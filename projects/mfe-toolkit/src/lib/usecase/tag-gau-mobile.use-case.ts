@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 import { InputData } from '../models/input-data.model';
-
+import { TagGAUMobile } from "../models/tag-gau-mobile.model";
 
 @Injectable()
 export class TagGAUMobileUseCase {
-  execute(input: InputData): any {
-    if (!input.pageName || !input.tipo_tag || !input.dispositivo) {
-      return 'Por favor, preencha todos os campos obrigatórios.';
-    }
 
-    const pageName = normalizePageName(input.pageName);
-    const tag = normalizeTag(input.tipo_tag, 'pascal');
-    const device = normalizeTag(input.dispositivo, 'kebab');
-
+  execute(input: InputData): TagGAUMobile  {
     const tagGAUMobileOutput: TagGAUMobile = {
-      // Construa a saída conforme necessário usando as variáveis acima
+      analyticswebview: {
+        event: 'your_event_name',
+        event_name: 'Your Event Name',
+        parameters: {
+          business_channel: 'your_business_channel',
+          business: 'your_business',
+          enviroment: 'your_environment',
+          custum_path: 'your_custom_path',
+          impletentation_team: 'your_implementation_team'
+        }
+      }
     };
-
     return tagGAUMobileOutput;
   }
 }
